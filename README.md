@@ -7,7 +7,7 @@ The shader is returned as a string.
 ## Install
 
 ```shell
-npm install --save-dev webpack-glsl-loader
+npm install --save-dev navinfo-webpack-glsl-loader
 ```
 
 ## Usage
@@ -49,7 +49,7 @@ You can also define the module extension bind on the command line if you are
 not using a configuration file (you probably should be though).
 
 ```shell
-webpack --module-bind 'glsl=webpack-glsl'
+webpack --module-bind 'glsl=navinfo-webpack-glsl'
 ```
 
 ## Imports
