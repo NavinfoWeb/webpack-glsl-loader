@@ -19,7 +19,7 @@ http://webpack.github.io/docs/using-loaders.html#loaders-in-require), you
 should avoid using this and use the configuration method in the next section.
 
 ```javascript
-require('webpack-glsl!./my-lovely-shader.glsl');
+require('navinfo-webpack-glsl-loader!./my-lovely-shader.glsl');
 ```
 
 ### In configuration
@@ -29,8 +29,8 @@ require('webpack-glsl!./my-lovely-shader.glsl');
     module: {
         loaders: [
             {
-                test: /\.glsl$/,
-                loader: 'webpack-glsl'
+                test: /\.(vs|fs|glsl)$/,
+                loader: 'navinfo-webpack-glsl-loader'
             }
         ]
     }
@@ -81,10 +81,10 @@ var shader = require('../glsl/fragment.glsl');
 I can have that shader include other `.glsl` files inline, like so:
 
 ```sass
-@import ./includes/perlin-noise;
+@import ./includes/perlin-noise.glsl;
 ```
 
-> **N.B.** all imports within `.glsl` files exclude the file extension and 
+> **N.B.** all imports within `.glsl` files include the file extension and
 are relative to the file doing the importing.
 
 Imported files are parsed for `@import` statements as well, so you can nest
@@ -99,5 +99,3 @@ contiguous file before raising an issue.
 ## TODO
 
 + Deduplicate imports, to prevent code clobbering and conflicts at runtime
-+ Make loader file extension agnostic, to allow for you odd people who use
-other extensions like `.vert` and `.frag`.
